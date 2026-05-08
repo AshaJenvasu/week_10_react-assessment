@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import Table from "../components/Table";
+
+import Header from "../components/Home/01_Header";
+import NavButtons from "../components/Home/02_NavButtons";
+import Display from "../components/Home/03_Display";
 
 const Home = () => {
   const [activeSection, setActiveSection] = useState("");
   const [members, setMembers] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
-    lastName: "",
+    lastname: "",
     position: "",
   });
 
@@ -80,7 +83,7 @@ const Home = () => {
         setMembers([...members, newMember]);
         setFormData({
           name: "",
-          lastName: "",
+          lastname: "",
           position: "",
         });
         alert("New warrior added to the ranks!");
@@ -93,107 +96,22 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center pt-24 px-10 min-h-screen bg-[#EAEAEA]">
       {/* 1. Header */}
-      <h1 className="text-6xl font-black text-center mb-20 leading-tight tracking-tighter text-brown-950 shadow-amber-200">
-        Generation Thailand <br />
-        <span className="text-orange-600">React - Assessment</span>
-      </h1>
-
+      <Header />
       {/* 2. Buttons Container  */}
-      <div className="flex gap-20 mb-16">
-        <button
-          onClick={() => setActiveSection("user")}
-          className={getButtonClass("user")}
-        >
-          User Home Section
-        </button>
-        <button
-          onClick={() => setActiveSection("admin")}
-          className={getButtonClass("admin")}
-        >
-          Admin Home Section
-        </button>
-      </div>
-
+      <NavButtons
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+        getButtonClass={getButtonClass}
+      />
       {/* 3. Section Display  */}
-      <div className="w-full max-w-5xl mt-10 p-10 bg-white rounded-2xl shadow-xl border-t-8 border-orange-600">
-        {!activeSection && (
-          <p className="text-center text-3xl font-bold text-gray-500 italic">
-            {`"Who decided that? I will decide what to show!" - Choose a section`}
-          </p>
-        )}
-        {activeSection === "user" && (
-          <div className="text-center">
-            <h2 className="text-4xl font-extrabold text-black mb-8">
-              User Database
-            </h2>
-            <p className="text-xl text-brown-900 bg-amber-100 p-5 rounded-lg border border-yellow-500">
-              <Table data={members} isAdmin={false} />
-            </p>
-          </div>
-        )}
-        {activeSection === "admin" && (
-          <div className="text-center">
-            <h2 className="text-4xl font-extrabold text-orange-700 mb-8">
-              Admin Control Panel
-            </h2>
-            <div className="mb-12 p-8 bg-white rounded-xl border-4 border-amber-500 shadow-lg">
-              <h3 className="text-2xl font-black mb-6 text-brown-950 uppercase italic">
-                Create User Here
-              </h3>
-              <form onSubmit={handleCreate} className="flex gap-4 items-end">
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-sm">Name</label>
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    className="border-2 border-gray-300 p-2 rounded-lg focus:border-orange-500 outline-none"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    required
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-sm">Last Name</label>
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    className="border-2 border-gray-300 p-2 rounded-lg focus:border-orange-500 outline-none"
-                    value={formData.lastname}
-                    onChange={(e) =>
-                      setFormData({ ...formData, lastname: e.target.value })
-                    }
-                    required
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold text-sm">Position</label>
-                  <input
-                    type="text"
-                    placeholder="Position"
-                    className="border-2 border-gray-300 p-2 rounded-lg focus:border-orange-500 outline-none"
-                    value={formData.position}
-                    onChange={(e) =>
-                      setFormData({ ...formData, position: e.target.value })
-                    }
-                    required
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="bg-orange-600 text-white px-8 py-2 rounded-lg font-black hover:bg-orange-800 shadow-md transition-all transform hover:scale-105 h-[44px]"
-                >
-                  Save
-                </button>
-              </form>
-            </div>
-            <p className="text-xl text-brown-900 bg-red-100 p-5 rounded-lg border border-red-500">
-              <Table data={members} isAdmin={true} onDelete={handleDelete} />
-            </p>
-          </div>
-        )}
-      </div>
+      <Display
+        activeSection={activeSection}
+        members={members}
+        handleDelete={handleDelete}
+        formData={formData}
+        setFormData={setFormData}
+        handleCreate={handleCreate}
+      />
     </div>
   );
 };
