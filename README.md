@@ -1,5 +1,7 @@
 Deploy URL: https://week-10-react-assessment.vercel.app/
 
+This project was built under the theme of "Escanor", the character of The Seven Deadly Sins
+
 1. Explain how and why you divided the app’s UI into components,
 
 The reason divide into components is because of cleaniness and easy to read also each components can also be reuse able.
