@@ -1,16 +1,27 @@
-import { BrowserRouter, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Owner from "./pages/Owner";
+import MainLayout from "./layouts/MainLayout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/owner",
+        element: <Owner />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Navbar />
-      <Route path="/" component={Home} />
-      <Route path="/owner" component={Owner} />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
