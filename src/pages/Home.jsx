@@ -94,7 +94,15 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center pt-24 px-10 min-h-screen bg-[#EAEAEA]">
+    <div className="flex flex-col items-center pt-24 px-10 min-h-screen min-h-screen bg-[#F3F4F6] relative overflow-hidden">
+      <div className="absolute inset-0 flex justify-center items-center opacity-[0.09] pointer-events-none">
+        <img
+          src="https://i.pinimg.com/736x/62/5e/82/625e8280b13d400d39780172325301ad.jpg"
+          alt="lion-sin"
+          className="w-[600px] "
+        />
+      </div>
+
       {/* 1. Header */}
       <Header />
       {/* 2. Buttons Container  */}

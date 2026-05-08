@@ -21,7 +21,7 @@ export const Owner = () => {
         {/* 4. Description  */}
         <div className="text-center space-y-6 max-w-2xl">
           <h2 className="text-4xl font-extrabold text-orange-700 italic tracking-wide">
-            「私は七つの大罪、リオン・シン」
+            「私は七つの大罪 エスカノール」
           </h2>
           <p className="text-3xl font-black text-brown-950">
             Escanor, The Lion's Sin of Pride
