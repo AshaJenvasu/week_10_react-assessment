@@ -1,6 +1,5 @@
 export const Owner = () => {
   return (
-    // Container หลัก (อาจจะเติม Gradient หรือ BG Image เท่ๆ แบบที่คุยกันไว้จ้ะ)
     <div className="flex flex-col items-center pt-24 px-10 min-h-screen bg-gradient-to-b from-amber-100 to-[#EAEAEA]">
       {/* 1. Header  */}
       <h1 className="text-6xl font-black text-center mb-16 leading-tight tracking-tighter text-brown-950 uppercase border-b-8 border-orange-600 pb-4 shadow-xl">
